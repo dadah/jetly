@@ -28,10 +28,12 @@ gem 'twitter-bootstrap-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-gem 'byebug', group: [:development, :test]
+gem 'pry-byebug', group: [:development, :test]
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'simplecov', :require => false
+  gem 'rspec-activemodel-mocks'
+  gem 'launchy'
 end
