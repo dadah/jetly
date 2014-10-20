@@ -40,11 +40,19 @@
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
-        
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="<%= jetly_urls_path %>">Jetly</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Admin", admin_sign_up_path  %></li>
+            <% if current_user.present? %>
+              <li><%= link_to "Sign out", admin_log_out_path %></li>
+            <% else %>
+              <li><%= link_to "Sign up", admin_sign_up_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>

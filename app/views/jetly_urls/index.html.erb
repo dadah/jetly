@@ -1,11 +1,21 @@
-<%= form_for @jetly_url, url: jetly_urls_path do |f| %>
-  <div class="input-group">
-    <%= f.text_field :complete_url, placeholder: "http://my.complete.url", class: "form-control" %>
-    <span class='input-group-btn'>
-      <%= f.submit "Shorten", class: "btn" %>
-    </span>
-  </div>
-<% end %>
-<% if @jetly_url.url_hash.present? && @jetly_url.valid? %>
-  <%= link_to @jetly_url.url_hash, id: 'shortened_url' %>
-<% end %>
+<div class='jumbotron'>
+  <h1>
+    JET.LY
+  </h1>
+  <p class='lead'>
+    Chop Your URLs!
+  </p>
+  <%= form_for @jetly_url, url: jetly_urls_path, method: :post do |f| %>
+    <div class="input-group">
+      <%= f.text_field :complete_url, placeholder: "http://my.complete.url", class: "form-control input-lg" %>
+      <span class='input-group-btn'>
+        <%= f.submit "Shorten", class: "btn btn-lg btn-success" %>
+      </span>
+    </div>
+  <% end %>
+  <% if @jetly_url.url_hash.present? && @jetly_url.valid? %>
+    <div class='well'>
+      Generated Short URL: <%= link_to "#{request.url}#{@jetly_url.url_hash}", @jetly_url.url_hash %>
+    </div>
+  <% end %>
+</div>

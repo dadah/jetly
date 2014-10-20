@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <th>
+      URL
+    </th>
+    <th>
+      Short link
+    </th>
+    <th>
+      Visits
+    </th>
+  </thead>
+  <tbody>
+    <% @jetlies.each do |jetly| %>
+      <tr>
+        <td>
+          <%= jetly.complete_url %>
+        </td>
+        <td>
+          <%= link_to "#{jetly_urls_url}#{jetly.url_hash}", "#{jetly_urls_url}#{jetly.url_hash}", target: '_blank' %>
+        </td>
+        <td>
+          <%= jetly.visits_count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @jetlies %>
