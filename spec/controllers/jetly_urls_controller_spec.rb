@@ -27,7 +27,7 @@ describe JetlyUrlsController do
     context 'When shortening a valid url' do
       let(:url_to_shorten) { 'http://www.sapo.pt' }
       let(:jetly_url) {
-        mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'http://localhost:3000/shrt', visits: 0
+        mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'shrt', visits: 0
       }
 
       it 'should fetch a shortened url' do
@@ -46,5 +46,31 @@ describe JetlyUrlsController do
       end
     end
 
+  end
+
+  describe '#show' do
+    context 'When accessing an unknown hash' do
+
+      it 'should set error and redirect to main' do
+        get :show, id: 'someunknownhash'
+        expect(flash[:error]).to eq('Unknown URL')
+        expect(response).to redirect_to(jetly_urls_path)
+      end
+
+    end
+
+    context 'When accessing a known hash' do
+      let(:url_to_redirect) { 'http://www.sapo.pt' }
+      let(:jetly_url) {
+        mock_model 'JetlyUrl', complete_url: url_to_redirect, url_hash: 'shrt', visits: 0
+      }
+
+      it 'should redirect to correspondig url' do
+        expect(JetlyUrl).to receive(:find_by).with(url_hash: 'shrt').and_return(jetly_url)
+        get :show, id: 'shrt'
+        expect(response).to redirect_to(url_to_redirect)
+      end
+
+    end
   end
 end
