@@ -7,7 +7,7 @@ feature 'Short url creation' do
     'thisisnotanurl'
   }
   given(:short_url) {
-    mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'shrt', visits: 0
+    mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'shrt', visits_count: 0
   }
 
   scenario 'Creating a new short url' do

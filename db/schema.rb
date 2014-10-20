@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019135109) do
+ActiveRecord::Schema.define(version: 20141020121020) do
 
   create_table "jetly_urls", force: true do |t|
     t.string   "complete_url",             null: false
     t.string   "url_hash"
     t.integer  "visits_count", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
