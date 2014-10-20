@@ -4,6 +4,12 @@ class JetlyUrl < ActiveRecord::Base
   before_save :cleanup_url
   after_create :hashify
 
+  def increment_visits
+    update_attribute :visits_count, self.visits_count + 1
+  end
+
+  private
+
   def hashify
     update_attribute :url_hash, self.id.to_s(32)
   end

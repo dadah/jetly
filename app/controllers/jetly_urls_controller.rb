@@ -12,6 +12,7 @@ class JetlyUrlsController < ApplicationController
 
   def show
     if jetly_url = JetlyUrl.find_by(url_hash: params[:id]).presence
+      jetly_url.increment_visits
       redirect_to jetly_url.complete_url
     else
       flash[:error] = 'Unknown URL'

@@ -37,4 +37,12 @@ describe JetlyUrl do
 
   end
 
+  describe '.increment visits' do
+    let(:short) { JetlyUrl.create complete_url: 'http://someurl.com', visits_count: 0 }
+    it 'should increment number of visits' do
+      short.increment_visits
+      expect(short.visits_count).to eq(1)
+    end
+  end
+
 end
