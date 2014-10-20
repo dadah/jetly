@@ -1,0 +1,11 @@
+<%= form_for @jetly_url do |f| %>
+  <div class="input-group">
+    <%= f.text_field :complete_url, placeholder: "http://my.complete.url", class: "form-control" %>
+    <span class='input-group-btn'>
+      <%= f.submit "Shorten", class: "btn" %>
+    </span>
+  </div>
+<% end %>
+<% if @jetly_url.url_hash.present? && @jetly_url.valid? %>
+  <%= link_to @jetly_url.url_hash, id: 'shortened_url' %>
+<% end %>
