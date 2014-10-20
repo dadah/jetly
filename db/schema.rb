@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20141019135109) do
 
   create_table "jetly_urls", force: true do |t|
     t.string   "complete_url",             null: false
-    t.string   "url_hash",                 null: false
+    t.string   "url_hash"
     t.integer  "visits_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

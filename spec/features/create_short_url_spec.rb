@@ -7,11 +7,11 @@ feature 'Short url creation' do
     'thisisnotanurl'
   }
   given(:short_url) {
-    mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'http://localhost:3000/shrt', visits: 0
+    mock_model 'JetlyUrl', complete_url: url_to_shorten, url_hash: 'shrt', visits: 0
   }
 
   scenario 'Creating a new short url' do
-    allow(JetlyUrl).to receive(:shorten).with(url_to_shorten).and_return short_url
+    allow(JetlyUrl).to receive(:create).with( complete_url: url_to_shorten ).and_return short_url
     visit '/'
     fill_in 'jetly_url_complete_url', with: url_to_shorten
     click_button 'Shorten'

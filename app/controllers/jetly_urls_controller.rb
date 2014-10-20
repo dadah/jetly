@@ -5,8 +5,8 @@ class JetlyUrlsController < ApplicationController
   end
 
   def create
-    @jetly_url = JetlyUrl.shorten(jetly_url_params[:complete_url]) || JetlyUrl.new
-    flash[:error] = 'Invalid url' if @jetly_url.new_record?
+    @jetly_url = JetlyUrl.find_by(jetly_url_params) || JetlyUrl.create(jetly_url_params)
+    flash[:error] = 'Invalid url' if @jetly_url.errors.any?
     render :index
   end
 
