@@ -1,4 +1,4 @@
-<%= form_for @jetly_url do |f| %>
+<%= form_for @jetly_url, url: jetly_urls_path do |f| %>
   <div class="input-group">
     <%= f.text_field :complete_url, placeholder: "http://my.complete.url", class: "form-control" %>
     <span class='input-group-btn'>
