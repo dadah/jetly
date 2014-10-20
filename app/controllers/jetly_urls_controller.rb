@@ -10,6 +10,15 @@ class JetlyUrlsController < ApplicationController
     render :index
   end
 
+  def show
+    if jetly_url = JetlyUrl.find_by(url_hash: params[:id]).presence
+      redirect_to jetly_url.complete_url
+    else
+      flash[:error] = 'Unknown URL'
+      redirect_to jetly_urls_path
+    end
+  end
+
   def jetly_url_params
     params.require(:jetly_url).permit(:complete_url)
   end
